@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Table from './containers/Table/Table';
+import Table from './containers/Table';
 
 const appElement = document.getElementById('ac-contacts') as HTMLElement;
 
