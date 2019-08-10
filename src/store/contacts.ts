@@ -25,8 +25,8 @@ export const getContacts = () => (dispatch: Dispatch) => {
             return (validateString(contact.firstName) && validateString(contact.lastName))
         }))
         .then((filteredContacts) => {
-            Promise.all(filteredContacts.map(async(contact: any) => (
-                await fetch(`https://cors-anywhere.herokuapp.com/https://lamppoststudios.api-us1.com/api/3/contacts/${contact.id}`, {
+            Promise.all(filteredContacts.map(async(currentContact: any) => (
+                await fetch(`https://cors-anywhere.herokuapp.com/https://lamppoststudios.api-us1.com/api/3/contacts/${currentContact.id}`, {
                     headers: {
                         'Api-Token': '0f7e5c9167768f6bb0a6e09e335ce464da7cb5e7008b989f0057266c26342424a4d8d3e5',
                     },
@@ -34,13 +34,14 @@ export const getContacts = () => (dispatch: Dispatch) => {
                     .then(res => res.json())
                     .then((contactDetailRes: any) => {
                         const { contact, contactData, deals } = contactDetailRes;
-                        const location = contactData ? `${contactData.geoCity}, ${contactData.geoState}` : null;
+                        const location = contactData ? `${contactData[0].geoCity}, ${contactData[0].geoState}, ${contactData[0].geoCountry2}` : null;
                         return (
                             {
-                                id: contact.id,
+                                contact: `${contact.firstName} ${contact.lastName}`,
                                 deals: deals.length,
-                                name: `${contact.firstName} ${contact.lastName}`,
+                                id: contact.id,
                                 location: location,
+                                tags: ["test", "test2"],
                                 totalValue: calculateTotalValue(deals),
                             }
                         )
@@ -54,6 +55,10 @@ export const getContacts = () => (dispatch: Dispatch) => {
             dispatch(getContactsFailure(err));
     });
 };
+
+export const getContactTags = (contactId:string) => {
+
+}
 
 
 // initial state

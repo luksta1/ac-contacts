@@ -1,9 +1,18 @@
 import React from 'react';
+import { formatTableHeader } from '../../helpers';
 
-const TableHeader: React.FC = () => {
-  return (
-    <></>
-  );
+type Props = {
+    value: string,
+}
+
+const TableHeader = (props: Props) => {
+    const { value } = props;
+
+    return (
+        <th>
+            {formatTableHeader(value)}
+        </th>
+    );
 }
 
 export default TableHeader;
