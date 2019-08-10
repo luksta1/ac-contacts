@@ -1,7 +1,7 @@
 type Contact = {
-    name: string,
-    totalValue: number,
-    location: string,
     deals: number,
+    name: string,
+    location: string,
     tags: string[]
+    totalValue: number,
 }

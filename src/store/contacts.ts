@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { calculateTotalValue, collectTags, validateString } from '../helpers';
 
 // action types
 const GET_CONTACTS_FETCH = 'GET_CONTACTS_FETCH';
@@ -14,19 +15,46 @@ const getContactsFailure = (error: string) => ({ type: GET_CONTACTS_FAILURE, err
 export const getContacts = () => (dispatch: Dispatch) => {
     dispatch(getContactsFetch());
 
-    fetch('https://cors-anywhere.herokuapp.com/https://lamppoststudios.api-us1.com/api/3/contacts', {
+    fetch('https://cors-anywhere.herokuapp.com/https://lamppoststudios.api-us1.com/api/3/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1&limit=100', {
         headers: {
             'Api-Token': '0f7e5c9167768f6bb0a6e09e335ce464da7cb5e7008b989f0057266c26342424a4d8d3e5',
         },
     })
         .then(res => res.json())
-        .then((contacts: any) => {
-            dispatch(getContactsSuccess(contacts.contacts));
-        })
+        .then((contactsRes: any) => contactsRes.contacts.filter((contact: any) => {
+            return (validateString(contact.firstName) && validateString(contact.lastName))
+        }))
+        .then((filteredContacts) => {
+            Promise.all(filteredContacts.map(async(contact: any) => (
+                await fetch(`https://cors-anywhere.herokuapp.com/https://lamppoststudios.api-us1.com/api/3/contacts/${contact.id}`, {
+                    headers: {
+                        'Api-Token': '0f7e5c9167768f6bb0a6e09e335ce464da7cb5e7008b989f0057266c26342424a4d8d3e5',
+                    },
+                })
+                    .then(res => res.json())
+                    .then((contactDetailRes: any) => {
+                        const { contact, contactData, deals } = contactDetailRes;
+                        const location = contactData ? `${contactData.geoCity}, ${contactData.geoState}` : null;
+                        return (
+                            {
+                                id: contact.id,
+                                deals: deals.length,
+                                name: `${contact.firstName} ${contact.lastName}`,
+                                location: location,
+                                totalValue: calculateTotalValue(deals),
+                            }
+                        )
+                    }))))
+                    .then((res) => {
+                        console.log('res', res)
+                        dispatch(getContactsSuccess(res));
+                    })
+            })
         .catch(err => {
             dispatch(getContactsFailure(err));
     });
 };
+
 
 // initial state
 const initialState: Object = {
