@@ -40,7 +40,7 @@ class Table extends React.Component<Props, Object> {
         return (
             contacts.length > 0 &&  (
                 <table className={styles.block}>
-                    <thead className={styles.header}>
+                    <thead className={styles.head}>
                         <tr>
                             {this.renderTableHeader(tableData.headers)}
                         </tr>

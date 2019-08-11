@@ -1,0 +1,27 @@
+@import "../../styles/variables/colors";
+
+.block {
+    height: 2.875em;
+
+    &:nth-child(even) {
+        background: $ac-slate-8;
+    }
+}
+
+.cell {
+    padding: 0 1em;
+
+    h2 {
+        color: $ac-slate-2;
+        font-size: 0.938em;
+        font-weight: default;
+    }
+
+    &Contact {
+        h2 {
+            color: $ac-ocean-2;
+            font-weight: 500;
+        }
+    }
+}
+

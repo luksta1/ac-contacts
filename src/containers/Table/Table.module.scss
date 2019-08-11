@@ -2,9 +2,10 @@
 
 .block {
     border: 2px solid $ac-slate-7;
+    border-collapse: collapse;
     width: 100%;
 }
 
-.header {
+.head {
     height: 1.75em;
 }

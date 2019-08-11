@@ -1,5 +1,8 @@
 import React from 'react';
+import classnames from 'classnames';
 import { formatContact } from '../../helpers';
+
+import * as styles from './TableRow.module.scss';
 
 type Props = {
     contact: Contact,
@@ -9,12 +12,17 @@ type Props = {
 const TableRow = (props: Props) => {
     const { contact, columns } = props;
     const formattedContact = formatContact(contact);
-
+    console.log(columns)
     return (
-        <tr>
+        <tr className={styles.block}>
             {columns.map((column, i) => (
-                <td key={i}>
-                    {formattedContact[column]}
+                <td key={i} className={classnames(
+                    styles.cell,
+                    {[`${styles.cellContact}`] : column === 'contact'}
+                )}>
+                    <h2>
+                        {formattedContact[column]}
+                    </h2>
                 </td>
             ))}
         </tr>

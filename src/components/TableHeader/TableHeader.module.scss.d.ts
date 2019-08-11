@@ -1,2 +1,2 @@
 export const block: string;
-export const head: string;
+export const header: string;
