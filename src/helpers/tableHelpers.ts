@@ -13,7 +13,8 @@ export const formatContact = (contact: Contact) => {
 }
 
 export const formatName = (name: string) => {
-    return name.replace(/([A-Z])/g, ' $1').trim();
+    const formattedName = name.replace(/([A-Z])/g, ' $1').trim();
+    return formattedName.charAt(0).toUpperCase() + name.slice(1);
 }
 
 export const formatValue = (value: number) => {
@@ -22,6 +23,6 @@ export const formatValue = (value: number) => {
 }
 
 export const formatLocation = (location: string) => {
-    return location === ', , ' ? '--' : location;
+    return location === ', , ' ? '' : location;
 }
 

@@ -1,7 +1,9 @@
 @import "../../styles/variables/colors";
 
 .block {
+    border-top: 2px solid $ac-slate-7;
     height: 2.875em;
+    width: 100%;
 
     &:nth-child(even) {
         background: $ac-slate-8;
@@ -9,19 +11,41 @@
 }
 
 .cell {
-    padding: 0 1em;
+    padding: 0 2em;
 
     h2 {
-        color: $ac-slate-2;
+        color: $ac-slate-1;
         font-size: 0.938em;
         font-weight: default;
     }
 
     &Contact {
+        width: 30%;
+
         h2 {
             color: $ac-ocean-2;
             font-weight: 500;
         }
+    }
+
+    &Deals {
+        width: 10%;
+
+        h2 {
+            margin-left: 1em;
+        }
+    }
+
+    &Location {
+        width: 20%;
+    }
+
+    &Tags {
+        width: 30%;
+    }
+
+    &TotalValue {
+        width: 20%;
     }
 }
 

@@ -18,7 +18,11 @@ const TableRow = (props: Props) => {
             {columns.map((column, i) => (
                 <td key={i} className={classnames(
                     styles.cell,
-                    {[`${styles.cellContact}`] : column === 'contact'}
+                    {[`${styles.cellContact}`] : column === 'contact'},
+                    {[`${styles.cellTotalValue}`] : column === 'totalValue'},
+                    {[`${styles.cellLocation}`] : column === 'location'},
+                    {[`${styles.cellDeals}`] : column === 'deals'},
+                    {[`${styles.cellTags}`] : column === 'tags'},
                 )}>
                     <h2>
                         {formattedContact[column]}
