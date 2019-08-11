@@ -24,10 +24,7 @@ class Table extends React.Component<Props, Object> {
 
     renderTableHeader = (headers: Object) => {
         const headerValues = Object.values(headers);
-    
-        return headerValues.map((value, i) => {
-            return <TableHeader key={i} value={value} />
-        });
+            return <TableHeader headers={headerValues} />
     }
 
     renderTableRows = (contact: Contact, headers: Object) => {
@@ -39,18 +36,12 @@ class Table extends React.Component<Props, Object> {
         const { contacts } = this.props;
         return (
             contacts.length > 0 &&  (
-                <table className={styles.block}>
-                    <thead className={styles.head}>
-                        <tr>
-                            {this.renderTableHeader(tableData.headers)}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {contacts.map((contact) => (
-                            this.renderTableRows(contact, tableData.headers)
-                        ))}
-                    </tbody>
-                </table>
+                <div className={styles.block} role="table" aria-label="Active Campaign Contacts">
+                    {this.renderTableHeader(tableData.headers)}
+                    {contacts.map((contact) => (
+                        this.renderTableRows(contact, tableData.headers)
+                    ))}
+                </div>
             )
         );
     }

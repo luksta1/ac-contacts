@@ -4,18 +4,23 @@ import { formatTableHeader } from '../../helpers';
 import * as styles from './TableHeader.module.scss'
 
 type Props = {
-    value: string,
+    headers: string[],
 }
 
 const TableHeader = (props: Props) => {
-    const { value } = props;
+    const { headers } = props;
 
     return (
-        <th className={styles.block}>
-            <h1 className={styles.header}>
-                {formatTableHeader(value)}
-            </h1>
-        </th>
+        <div className={styles.block}>
+            {headers.map((headerValue) => (
+                <div key={headerValue} className={styles.columnHeader}>
+                    <h1 className={styles.header}>
+                        {formatTableHeader(headerValue)}
+                    </h1>
+                </div>
+            ))
+            }
+        </div>
     );
 }
 
