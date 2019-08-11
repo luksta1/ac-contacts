@@ -8,6 +8,8 @@ import TableRow from '../../components/TableRow';
 import { getContacts } from '../../store';
 import { tableData } from '../../data';
 
+import * as styles from './Table.module.scss'
+
 type Props = {
     contacts: Contact[],
     loadContacts: () => void
@@ -37,20 +39,18 @@ class Table extends React.Component<Props, Object> {
         const { contacts } = this.props;
         return (
             contacts.length > 0 &&  (
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                {this.renderTableHeader(tableData.headers)}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {contacts.map((contact) => (
-                                this.renderTableRows(contact, tableData.headers)
-                            ))}
-                        </tbody>
-                    </table>
-                </main>
+                <table className={styles.block}>
+                    <thead className={styles.header}>
+                        <tr>
+                            {this.renderTableHeader(tableData.headers)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {contacts.map((contact) => (
+                            this.renderTableRows(contact, tableData.headers)
+                        ))}
+                    </tbody>
+                </table>
             )
         );
     }
