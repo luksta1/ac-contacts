@@ -1,0 +1,75 @@
+@import "../../styles/variables/colors";
+
+.block {
+    border-top: 2px solid $ac-slate-7;
+    height: 2.875em;
+    width: 100%;
+
+    &:nth-child(even) {
+        background: $ac-slate-8;
+    }
+
+    @media only screen 
+        and (max-width: 960px) {
+            border-left: 2px solid $ac-slate-7;
+            border-top: none;
+            height: 100%;
+        }
+}
+
+.cell {
+    padding: 0 2em;
+
+    @media only screen 
+        and (max-width: 960px) {
+            align-items: center;
+            display: flex;
+            height: calc((100% -8em) / 5);
+        }
+
+    h2 {
+        color: $ac-slate-1;
+        font-size: 0.938em;
+        font-weight: default;
+    }
+
+    &Contact {
+        align-items: center;
+        display: flex;
+
+        img {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            margin-right: 0.8em;
+        }
+
+        h2 {
+            color: $ac-ocean-1;
+            font-weight: 500;
+        }
+    }
+
+    &Deals {
+
+        h2 {
+            margin-left: 1em;
+
+            @media only screen 
+            and (max-width: 960px) {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &Tags {
+        white-space: nowrap;
+        max-width: 25%;
+
+        h2 {
+            max-width: 25%;
+            text-overflow: ellipsis;
+        }
+    }
+}
+

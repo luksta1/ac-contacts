@@ -1,0 +1,19 @@
+@import "../../styles/variables/colors";
+
+.block {
+    padding: 0 2em;
+    text-align: left;
+
+    @media only screen 
+        and (max-width: 960px) {
+            align-items: center;
+            display: flex;
+            height: calc((100% - 14px) / 5);
+        }
+}
+
+.header {
+    color: $ac-slate-5;
+    font-size: 0.875em;
+    font-weight: 700;
+}
