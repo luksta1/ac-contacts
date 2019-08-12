@@ -16,7 +16,7 @@ const getContactsFailure = (error: string) => ({ type: GET_CONTACTS_FAILURE, err
 export const getContacts = () => (dispatch: Dispatch) => {
     dispatch(getContactsFetch());
 
-    fetch(`${CORS_API_HOST}/${API_URI}/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1&limit=100`, {
+    fetch(`${CORS_API_HOST}/${API_URI}/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1&limit=50`, {
         headers: {
             'Api-Token': API_TOKEN,
         },
