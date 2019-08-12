@@ -12,7 +12,7 @@ type Props = {
 const TableRow = (props: Props) => {
     const { contact, columns } = props;
     const formattedContact = formatContact(contact);
-    console.log(columns)
+
     return (
         <tr className={styles.block}>
             {columns.map((column, i) => (
@@ -24,6 +24,12 @@ const TableRow = (props: Props) => {
                     {[`${styles.cellDeals}`] : column === 'deals'},
                     {[`${styles.cellTags}`] : column === 'tags'},
                 )}>
+                    {column === 'contact'
+                        && <img
+                            src={`https://ui-avatars.com/api/?background=eae0fe&color=202129&name=${formattedContact.contact}`}
+                            alt={formattedContact.contact}
+                            />
+                    }
                     <h2>
                         {formattedContact[column]}
                     </h2>

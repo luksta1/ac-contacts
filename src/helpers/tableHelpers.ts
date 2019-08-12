@@ -1,3 +1,5 @@
+import { statesHash } from '../data';
+
 export const formatTableHeader = (value: string) => {
     const capitalized = value.charAt(0).toUpperCase() + value.slice(1);
     return capitalized.replace(/([A-Z])/g, ' $1').trim();
@@ -22,7 +24,10 @@ export const formatValue = (value: number) => {
     return `$${formatted}`;
 }
 
-export const formatLocation = (location: string) => {
-    return location === ', , ' ? '' : location;
+export const formatLocation = (location: any) => {
+    return (location === null || location.city === '')
+        ? ''
+        : `${location.city}, ${statesHash[location.state]}, ${location.country === 'US'
+        ? 'USA' : location.country}`;
 }
 

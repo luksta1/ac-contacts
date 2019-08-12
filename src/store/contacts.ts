@@ -34,7 +34,14 @@ export const getContacts = () => (dispatch: Dispatch) => {
                     .then(res => res.json())
                     .then((contactDetailRes: any) => {
                         const { contact, contactData, deals } = contactDetailRes;
-                        const location = contactData ? `${contactData[0].geoCity}, ${contactData[0].geoState}, ${contactData[0].geoCountry2}` : null;
+                        const location = contactData
+                        ? {
+                            city: contactData[0].geoCity,
+                            state: contactData[0].geoState,
+                            country: contactData[0].geoCountry2,
+                        }
+                        : null;
+
                         return (
                             {
                                 contact: `${contact.firstName} ${contact.lastName}`,
@@ -47,7 +54,6 @@ export const getContacts = () => (dispatch: Dispatch) => {
                         )
                     }))))
                     .then((res) => {
-                        console.log('res', res)
                         dispatch(getContactsSuccess(res));
                     })
             })
