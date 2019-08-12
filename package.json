@@ -2,6 +2,7 @@
   "name": "ac-contacts-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://luksta1.github.io/ac-contacts",
   "dependencies": {
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.3",
