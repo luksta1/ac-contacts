@@ -16,6 +16,7 @@ const getContactsFailure = (error: string) => ({ type: GET_CONTACTS_FAILURE, err
 export const getContacts = () => (dispatch: Dispatch) => {
     dispatch(getContactsFetch());
 
+    // remove limit of 100 (for better results) due to cors-anywhere request size limit on github pages
     fetch(`${CORS_API_HOST}/${API_URI}/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1`, {
         headers: {
             'Api-Token': API_TOKEN,
