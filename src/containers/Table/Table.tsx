@@ -24,32 +24,29 @@ class Table extends React.Component<Props, Object> {
         await loadContacts();
     }
 
-    renderTableHeader = (headers: Object) => {
-        const headerValues = Object.values(headers);
+    get tableHeaders () {
+        const headerValues = Object.values(tableData.headers);
     
         return headerValues.map((value, i) => {
             return <TableHeader key={i} value={value} />
         });
     }
 
-    renderTableRows = (contact: Contact, headers: Object) => {
-        const headerValues = Object.values(headers);
-            return <TableRow key={contact.id} contact={contact} columns={headerValues} />
-    }
-
     render(): React.ReactNode {
         const { contacts, isLoading } = this.props;
+        const headerValues = Object.values(tableData.headers);
+
         return (
             !isLoading && contacts.length > 0 ? (
                 <table className={styles.block}>
                     <thead className={styles.head}>
                         <tr className={styles.headRow}>
-                            {this.renderTableHeader(tableData.headers)}
+                            {this.tableHeaders}
                         </tr>
                     </thead>
                     <tbody className={styles.bodyBlock}>
                         {contacts.map((contact) => (
-                            this.renderTableRows(contact, tableData.headers)
+                            <TableRow key={contact.id} contact={contact} columns={headerValues} />
                         ))}
                     </tbody>
                 </table>
@@ -80,4 +77,7 @@ const mapDispatch = (dispatch: Dispatch) => (
         }
     }
 )
+
+export const disconnectedTable = Table;
 export default connect(mapState, mapDispatch)(Table);
+

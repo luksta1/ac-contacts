@@ -1,2 +1,4 @@
 import Table from './Table';
-export default Table;
+import { disconnectedTable } from './Table';
+
+export { disconnectedTable, Table} ;
