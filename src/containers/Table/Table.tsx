@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import Loader from 'react-loader-spinner';
 
 import TableHeader from '../../components/TableHeader';
 import TableRow from '../../components/TableRow';
@@ -12,6 +13,7 @@ import * as styles from './Table.module.scss'
 
 type Props = {
     contacts: Contact[],
+    isLoading: boolean,
     loadContacts: () => void
 }
 
@@ -36,9 +38,9 @@ class Table extends React.Component<Props, Object> {
     }
 
     render(): React.ReactNode {
-        const { contacts } = this.props;
+        const { contacts, isLoading } = this.props;
         return (
-            contacts.length > 0 &&  (
+            !isLoading && contacts.length > 0 ? (
                 <table className={styles.block}>
                     <thead className={styles.head}>
                         <tr className={styles.headRow}>
@@ -51,7 +53,15 @@ class Table extends React.Component<Props, Object> {
                         ))}
                     </tbody>
                 </table>
-            )
+            ) :
+            <div className={styles.loader}>
+                <Loader
+                    type="TailSpin"
+                    color="#3c53d8"
+                    height="100"
+                    width="100"
+                />
+            </div>
         );
     }
 }
@@ -59,6 +69,7 @@ class Table extends React.Component<Props, Object> {
 const mapState = (state: StoreState) => (
     {
         contacts: state.contacts.contactsList,
+        isLoading: state.contacts.isLoading,
     }
 )
 
