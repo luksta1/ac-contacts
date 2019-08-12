@@ -57,6 +57,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 - **ESLint** - An open source pluggable linting utility for JavaScript. [documentation](https://eslint.org)
 
+### Testing
+
+- **Jest** - Jest is being used as the test runner for this project. [documentation](https://jestjs.io/)
+- **Enzyme** - Enzyme is a React component testing utility. [documentation](https://airbnb.io/enzyme/)
+
 ### Styling
 
 - **Node Sass** - This package processes SCSS to CSS, allowing the use of SCSS to write our stylesheets.. [documentation](https://github.com/sass/node-sass)
