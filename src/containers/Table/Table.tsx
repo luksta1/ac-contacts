@@ -58,8 +58,8 @@ class Table extends React.Component<Props, Object> {
                 <Loader
                     type="TailSpin"
                     color="#3c53d8"
-                    height="100"
-                    width="100"
+                    height={60}
+                    width={60}
                 />
             </div>
         );

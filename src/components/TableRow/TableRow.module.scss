@@ -63,7 +63,13 @@
     }
 
     &Tags {
-        width: 25%;
+        white-space: nowrap;
+        max-width: 25%;
+
+        h2 {
+            max-width: 25%;
+            text-overflow: ellipsis;
+        }
     }
 }
 

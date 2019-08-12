@@ -9,8 +9,9 @@ export const formatContact = (contact: Contact) => {
     return {
         ...contact,
         contact: formatName(contact.contact),
-        totalValue: formatValue(contact.totalValue),
         location: formatLocation(contact.location),
+        tags: formatTags(contact.tags),
+        totalValue: formatValue(contact.totalValue),
     }
 }
 
@@ -29,5 +30,9 @@ export const formatLocation = (location: any) => {
         ? ''
         : `${location.city}, ${statesHash[location.state]}, ${location.country === 'US'
         ? 'USA' : location.country}`;
+}
+
+export const formatTags = (tags: string[]) => {
+    return tags.join(', ');
 }
 
