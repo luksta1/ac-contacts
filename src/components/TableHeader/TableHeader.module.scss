@@ -1,22 +1,19 @@
 @import "../../styles/variables/colors";
 
 .block {
-    align-items: center;
-    display: flex;
-    flex-flow: row wrap;
-    height: 1.75em;;
     padding: 0 2em;
     text-align: left;
-    width: 100%;
-}
 
-.columnHeader {
-    width: calc(100% / 5);
+    @media only screen 
+        and (max-width: 960px) {
+            align-items: center;
+            display: flex;
+            height: calc((100% - 14px) / 5);
+        }
 }
 
 .header {
     color: $ac-slate-5;
     font-size: 0.875em;
     font-weight: 700;
-    margin: 0;
 }

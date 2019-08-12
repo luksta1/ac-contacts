@@ -14,9 +14,9 @@ const TableRow = (props: Props) => {
     const formattedContact = formatContact(contact);
     console.log(columns)
     return (
-        <div className={styles.block}>
+        <tr className={styles.block}>
             {columns.map((column, i) => (
-                <div key={i} className={classnames(
+                <td key={i} className={classnames(
                     styles.cell,
                     {[`${styles.cellContact}`] : column === 'contact'},
                     {[`${styles.cellTotalValue}`] : column === 'totalValue'},
@@ -27,9 +27,9 @@ const TableRow = (props: Props) => {
                     <h2>
                         {formattedContact[column]}
                     </h2>
-                </div>
+                </td>
             ))}
-        </div>
+        </tr>
     );
 }
 

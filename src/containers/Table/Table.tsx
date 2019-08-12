@@ -24,7 +24,10 @@ class Table extends React.Component<Props, Object> {
 
     renderTableHeader = (headers: Object) => {
         const headerValues = Object.values(headers);
-            return <TableHeader headers={headerValues} />
+    
+        return headerValues.map((value, i) => {
+            return <TableHeader key={i} value={value} />
+        });
     }
 
     renderTableRows = (contact: Contact, headers: Object) => {
@@ -36,12 +39,18 @@ class Table extends React.Component<Props, Object> {
         const { contacts } = this.props;
         return (
             contacts.length > 0 &&  (
-                <div className={styles.block} role="table" aria-label="Active Campaign Contacts">
-                    {this.renderTableHeader(tableData.headers)}
-                    {contacts.map((contact) => (
-                        this.renderTableRows(contact, tableData.headers)
-                    ))}
-                </div>
+                <table className={styles.block}>
+                    <thead className={styles.head}>
+                        <tr className={styles.headRow}>
+                            {this.renderTableHeader(tableData.headers)}
+                        </tr>
+                    </thead>
+                    <tbody className={styles.bodyBlock}>
+                        {contacts.map((contact) => (
+                            this.renderTableRows(contact, tableData.headers)
+                        ))}
+                    </tbody>
+                </table>
             )
         );
     }

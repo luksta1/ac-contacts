@@ -4,4 +4,35 @@
     border: 2px solid $ac-slate-7;
     border-collapse: collapse;
     width: 100%;
+
+    @media only screen 
+        and (max-width: 960px) {
+            display: flex;
+            height: 100%;
+        }
+}
+
+.head {
+    @media only screen 
+    and (max-width: 960px) {
+        border-right: 2px solid $ac-slate-7;
+    }
+}
+
+.headRow {
+    @media only screen 
+        and (max-width: 960px) {
+            display:flex;
+            flex-direction: column;
+            height: 100%;
+        }
+}
+
+.bodyBlock {
+    @media only screen 
+    and (max-width: 960px) {
+        display:flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 }
