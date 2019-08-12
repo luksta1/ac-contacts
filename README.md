@@ -1,4 +1,4 @@
-# Trending Widget
+# AC Contacts Table
 
 A contacts table application built with React / Redux and Typescript
 
