@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { API_TOKEN, API_URI, CORS_API_HOST } from '../constants';
+import { API_TOKEN, API_URI, CORS_API_HOST, ORIGIN_URI } from '../constants';
 import { calculateTotalValue, validateString, validateTags } from '../helpers';
 
 // action types
@@ -20,6 +20,7 @@ export const getContacts = () => (dispatch: Dispatch) => {
     fetch(`${CORS_API_HOST}/${API_URI}/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1`, {
         headers: {
             'Api-Token': API_TOKEN,
+            'Origin': ORIGIN_URI,
         },
     })
         .then(res => res.json())
@@ -31,6 +32,7 @@ export const getContacts = () => (dispatch: Dispatch) => {
                 await fetch(`${CORS_API_HOST}/${API_URI}/contacts/${currentContact.id}`, {
                     headers: {
                         'Api-Token': API_TOKEN,
+                        'Origin': ORIGIN_URI,
                     },
                 })
                 .then(res => res.json())
@@ -70,6 +72,7 @@ export const getContactTags = (contactId:string) => {
         fetch(`${CORS_API_HOST}/${API_URI}/contacts/${contactId}/contactTags`, {
             headers: {
                 'Api-Token': API_TOKEN,
+                'Origin': ORIGIN_URI,
             },
         })
         .then(res => res.json())
@@ -78,6 +81,7 @@ export const getContactTags = (contactId:string) => {
                 await fetch(`${CORS_API_HOST}/${API_URI}/tags/${tagObj.id}`, {
                         headers: {
                             'Api-Token': API_TOKEN,
+                            'Origin': ORIGIN_URI,
                         },
                 })
                 .then(res => res.json())
