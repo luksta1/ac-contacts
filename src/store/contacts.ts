@@ -19,8 +19,8 @@ export const getContacts = () => (dispatch: Dispatch) => {
     // remove limit of 100 (for better results) due to cors-anywhere request size limit on github pages
     fetch(`${CORS_API_HOST}/${API_URI}/contacts?include=contactData,contactTags.tag,contactDeals.deal&status=1`, {
         headers: {
-            'Api-Token': API_TOKEN,
-            'Origin': ORIGIN_URI,
+            'Api-Token': API_TOKEN as string,
+            'Origin': ORIGIN_URI as string,
         },
     })
         .then(res => res.json())
@@ -31,8 +31,8 @@ export const getContacts = () => (dispatch: Dispatch) => {
             Promise.all(filteredContacts.map(async(currentContact: any) => (
                 await fetch(`${CORS_API_HOST}/${API_URI}/contacts/${currentContact.id}`, {
                     headers: {
-                        'Api-Token': API_TOKEN,
-                        'Origin': ORIGIN_URI,
+                        'Api-Token': API_TOKEN as string,
+                        'Origin': ORIGIN_URI as string,
                     },
                 })
                 .then(res => res.json())
@@ -71,8 +71,8 @@ export const getContactTags = (contactId:string) => {
     return new Promise(resolve => {
         fetch(`${CORS_API_HOST}/${API_URI}/contacts/${contactId}/contactTags`, {
             headers: {
-                'Api-Token': API_TOKEN,
-                'Origin': ORIGIN_URI,
+                'Api-Token': API_TOKEN as string,
+                'Origin': ORIGIN_URI as string,
             },
         })
         .then(res => res.json())
@@ -80,8 +80,8 @@ export const getContactTags = (contactId:string) => {
             Promise.all(returnedTags.contactTags.map(async(tagObj: any) => (
                 await fetch(`${CORS_API_HOST}/${API_URI}/tags/${tagObj.id}`, {
                         headers: {
-                            'Api-Token': API_TOKEN,
-                            'Origin': ORIGIN_URI,
+                            'Api-Token': API_TOKEN as string,
+                            'Origin': ORIGIN_URI as string,
                         },
                 })
                 .then(res => res.json())
